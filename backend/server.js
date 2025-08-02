@@ -10,12 +10,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Conexión a MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/paintstock', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
-.then(() => console.log('📦 Conectado a MongoDB'))
+// Conexión a MongoDB Atlas simplificada
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/paintstock')
+.then(() => console.log('📦 Conectado a MongoDB Atlas'))
 .catch(err => console.error('❌ Error conectando a MongoDB:', err));
 
 // Rutas
