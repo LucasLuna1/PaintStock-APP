@@ -39,9 +39,9 @@ const Products = () => {
       const response = await productsAPI.getAll(params);
       setProducts(response.data.products);
       setPagination({
-        currentPage: response.data.currentPage,
-        totalPages: response.data.totalPages,
-        total: response.data.total
+        currentPage: Number(response.data.currentPage),
+        totalPages: Number(response.data.totalPages),
+        total: Number(response.data.total)
       });
     } catch (error) {
       console.error('Error loading products:', error);
@@ -229,7 +229,7 @@ const Products = () => {
               {pagination.totalPages > 1 && (
                 <div className="pagination">
                   <button
-                    onClick={() => setPagination(prev => ({ ...prev, currentPage: prev.currentPage - 1 }))}
+                    onClick={() => setPagination(prev => ({ ...prev, currentPage: Number(prev.currentPage) - 1 }))}
                     disabled={pagination.currentPage === 1}
                     className="btn btn-outline"
                   >
@@ -239,7 +239,7 @@ const Products = () => {
                     Página {pagination.currentPage} de {pagination.totalPages} ({pagination.total} productos)
                   </span>
                   <button
-                    onClick={() => setPagination(prev => ({ ...prev, currentPage: prev.currentPage + 1 }))}
+                    onClick={() => setPagination(prev => ({ ...prev, currentPage: Number(prev.currentPage) + 1 }))}
                     disabled={pagination.currentPage === pagination.totalPages}
                     className="btn btn-outline"
                   >
